@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About <%= shopName %></title>
+  <title>Login - <%= shopName %></title>
   <link rel="stylesheet" href="/main.css">
 </head>
 <body>
@@ -13,22 +13,26 @@
         <li><a href="/">Home</a></li>
         <li><a href="/about">About</a></li>
         <li><a href="/search">Search</a></li>
-        <% if (user && user.is_admin) { %>
-          <li><a href="/books">Manage Books</a></li>
-        <% } %>
-        <% if (!user) { %>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-        <% } else { %>
+        <% if (user) { %>
           <li><a href="/dashboard">Dashboard</a></li>
           <li><a href="/logout">Logout</a></li>
+        <% } else { %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/register">Register</a></li>
         <% } %>
       </ul>
     </nav>
   </header>
   <main class="container">
-    <h1>About <%= shopName %></h1>
-    <p><%= shopName %> is your one-stop shop for all your reading adventures. Browse our catalog or manage your account with ease.</p>
+    <h1>Login to <%= shopName %></h1>
+    <% if (typeof error !== 'undefined') { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+    <form action="/login" method="POST">
+      <p><label>Email:<br><input type="email" name="email" required></label></p>
+      <p><label>Password:<br><input type="password" name="password" required></label></p>
+      <p><input type="submit" value="Login"></p>
+    </form>
   </main>
   <footer>
     <p>&copy; <%= new Date().getFullYear() %> <%= shopName %></p>

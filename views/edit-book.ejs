@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Book - <%= shopName %></title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/books">Manage Books</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Edit Book</h1>
+    <form action="/books/edit/<%= book.id %>" method="POST">
+      <p><label>Title:<br><input type="text" name="title" value="<%= book.title %>" required></label></p>
+      <p><label>Author:<br><input type="text" name="author" value="<%= book.author %>" required></label></p>
+      <p><label>Description:<br><textarea name="description"><%= book.description %></textarea></label></p>
+      <p><label>Price:<br><input type="number" name="price" step="0.01" value="<%= book.price %>" required></label></p>
+      <p><input type="submit" value="Update Book"></p>
+    </form>
+  </main>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> <%= shopName %></p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Books - <%= shopName %></title>
+  <link rel="stylesheet" href="/main.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/dashboard">Dashboard</a></li>
+        <li><a href="/books/add">Add New Book</a></li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="container">
+    <h1>Manage Books</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% books.forEach(book => { %>
+          <tr>
+            <td><%= book.title %></td>
+            <td><%= book.author %></td>
+            <td>$<%= book.price.toFixed(2) %></td>
+            <td>
+              <a class="button" href="/books/edit/<%= book.id %>">Edit</a>
+              <form action="/books/delete/<%= book.id %>" method="POST" style="display:inline">
+                <button class="button" type="submit" onclick="return confirm('Delete this book?');">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </main>
+  <footer>
+    <p>&copy; <%= new Date().getFullYear() %> <%= shopName %></p>
+  </footer>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to <%= shopName %></title>
+  <title>Dashboard - <%= shopName %></title>
   <link rel="stylesheet" href="/main.css">
 </head>
 <body>
@@ -11,24 +11,21 @@
     <nav>
       <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/search">Search</a></li>
         <% if (user && user.is_admin) { %>
           <li><a href="/books">Manage Books</a></li>
         <% } %>
-        <% if (!user) { %>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/register">Register</a></li>
-        <% } else { %>
-          <li><a href="/dashboard">Dashboard</a></li>
-          <li><a href="/logout">Logout</a></li>
-        <% } %>
+        <li><a href="/logout">Logout</a></li>
       </ul>
     </nav>
   </header>
   <main class="container">
-    <h1>Welcome to <%= shopName %></h1>
-    <p>Discover your next favorite book at <%= shopName %>!</p>
+    <h1>Welcome, <%= user.first_name %>!</h1>
+    <% if (user.is_admin) { %>
+      <p><a class="button" href="/books">Go to Book Management</a></p>
+    <% } else { %>
+      <p>Browse and search for books to purchase.</p>
+      <p><a class="button" href="/search">Search Books</a></p>
+    <% } %>
   </main>
   <footer>
     <p>&copy; <%= new Date().getFullYear() %> <%= shopName %></p>
