@@ -35,7 +35,7 @@ database for storing and retrieving book data.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/lewfer/gs-dwa-lab-3.1.git
+   git clone https://github.com/zakariya-ali/Book-Management-System.git
    cd "Book Management System"
    ```
 2. Install dependencies:
